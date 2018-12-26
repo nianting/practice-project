@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+
+  <com-a></com-a>
+
+</div>
+
+<script src="vue.js"></script>
+<script>
+  // 全局组件
+  Vue.component('ComA', {
+    template: '<div><button @click="handle">按钮</button><span>{{ count }}</span></div>',
+    data() {
+      return {
+        count : 0
+      }
+    },
+    methods: {
+      handle() {
+        this.count ++;
+      }
+    }
+  });
+
+  var vm = new Vue({
+    el:'#app'
+  })
+
+
+
+</script>
+
+</body>
+</html>

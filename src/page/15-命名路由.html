@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box {
+      background-color: red;
+    }
+    .router-link-exact-active {
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <ul>
+    <li>
+      <!-- <a href="#/users">用户管理</a> -->
+      <!-- <router-link to="/users/xxxx/123/xxxx">用户管理</router-link> -->
+      <router-link :to="{ name: 'users' }">用户管理</router-link>
+    </li>
+    <li>
+      <!-- <a href="#/rights">权限管理</a> -->
+      <!-- <router-link to="/rights">权限管理</router-link> -->
+      <router-link :to="{ name: 'rights' }">权限管理</router-link>
+    </li>
+    <li>
+      <!-- <a href="#/roles">角色管理</a> -->
+      <router-link to="/roles">角色管理</router-link>
+    </li>
+  </ul>
+  <!-- 给路由匹配到的组件占位 -->
+  <router-view class="box"></router-view>
+</div>
+<script src="vue.js"></script>
+<script src="vue-router.js"></script>
+<script>
+  // window.Vue
+  // 如果vue-router检测到全局范围内由Vue，会自动调用Vue.use()注册vue-router插件
+  // 1 创建(路由)组件
+  var users = {
+    template: '<div>这是用户管理的组件</div>'
+  };
+  var rights = {
+    template: '<div>这是权限管理的组件</div>'
+  };
+  var roles = {
+    template: '<div>这是角色管理的组件</div>'
+  };
+  // Animate.css
+  var notFound = {
+    template: '<div>这是一个漂亮的404界面</div>'
+  }
+
+  // 2 创建路由对象(设置路由规则)
+  // route   路由规则   --- 获取到路由相关数据
+  // router  路由对象 -> 路由规则
+  var router = new VueRouter({
+    // 设置路由规则
+    routes: [
+      // 路由规则
+      { name: 'home', path: '/', redirect: '/users' },
+      { name: 'users', path: '/users', component: users },
+      { name: 'rights', path: '/rights', component: rights },
+      { path: '/roles', component: roles },
+      { path: '*', component: notFound }
+    ]
+  });
+  // 3 创建vue实例，配置路由对象
+  var vm = new Vue({
+    el: '#app',
+    router
+  });
+</script>
+</body>
+</html>

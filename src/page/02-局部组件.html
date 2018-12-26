@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!-- vm 不能访问组件中的data -->
+<!-- 组件也不能访问vm中的data成员 -->
+<!-- {{ msg }} -->
+
+<com-a></com-a>
+
+<com-a></com-a>
+
+<com-a></com-a>
+
+  <hr>
+  <com></com>
+
+</div>
+<script src="vue.js"></script>
+<script>
+  var ComA = {
+    // 组件就是一个vue的实例
+    // 组件的模板中应该有且只有一个根元素
+    template: '<div><span>首页 {{ msg }}</span>-<span>用户管理</span></div>',
+    //组件中的data，必须是一个函数，因为要让不同的组件实例管理自己的数据
+    data() {
+      return {
+        msg: 'hello'
+      }
+    }
+  };
+  var com = {
+    template: '<div><button @click="handle">按钮</button> <span>{{ count }}</span></div>',
+    data() {
+      return {
+        count: 0
+      }
+    },
+    methods: {
+      handle() {
+        this.count ++;
+      }
+    }
+  }
+  var vm = new Vue({
+    el: '#app',
+    // 局部组件
+    components: {
+      // 组件有自己的作用域
+      'com-a': ComA,
+      com
+    }
+  })
+
+
+
+</script>
+
+</body>
+</html>

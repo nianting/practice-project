@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <com-a :level1="level1" v-bind:level2="{name: 'haha'}"></com-a>
+</div>
+
+<script src="vue.js"></script>
+<script>
+  // 面包屑
+  Vue.component('com-a', {
+    // 接收父组件传过来的值
+    props: ['level1', 'level2'],
+    template: '<div><span>{{ level1 }}</span>-<span>{{ level2 }}</span></div>',
+    mounted() {
+      console.log(this.level1);
+      console.log(this.level2);
+    }
+  });
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      level1: {name: '首页'}
+    }
+  });
+
+
+
+</script>
+
+
+</body>
+</html>

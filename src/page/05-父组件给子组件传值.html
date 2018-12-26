@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <com-a :level1="{name: '首页'}" level2="权限管理"></com-a>
+</div>
+
+<script src="vue.js"></script>
+<script>
+  // 面包屑
+  Vue.component('com-a', {
+    // 接收父组件传过来的值
+    props: ['level1', 'level2'],
+    template: '<div><span>{{ level1 }}</span>-<span>{{ level2 }}</span></div>'
+  });
+  var vm = new Vue({
+    el: '#app'
+  });
+
+
+
+</script>
+
+
+</body>
+</html>
